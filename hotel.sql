@@ -90,15 +90,15 @@ INSERT INTO quarto (numero_quarto, tipo_quarto, preco_noite, status_quarto) VALU
 
 INSERT INTO reserva (id_cliente, id_quarto, data_entrada, data_saida, status_reserva) VALUES
 (1, 1, '2024-11-10', '2024-11-12', 'Confirmada'),
-(2, 2, '2024-11-11', '2024-11-15', 'Confirmada'),
-(3, 3, '2024-11-12', '2024-11-14', 'Confirmada'),
+(2, 2, '2024-11-11', '2024-11-15', 'Cancelada'),
+(3, 3, '2024-11-12', '2024-11-14', 'Concluida'),
 (4, 4, '2024-11-13', '2024-11-16', 'Confirmada'),
 (5, 5, '2024-11-14', '2024-11-17', 'Confirmada'),
-(6, 6, '2024-11-15', '2024-11-18', 'Confirmada'),
+(6, 6, '2024-11-15', '2024-11-18', 'Concluida'),
 (7, 7, '2024-11-16', '2024-11-20', 'Confirmada'),
-(8, 8, '2024-11-17', '2024-11-21', 'Confirmada'),
+(8, 8, '2024-11-17', '2024-11-21', 'Cancelada'),
 (9, 9, '2024-11-18', '2024-11-22', 'Confirmada'),
-(10, 10, '2024-11-19', '2024-11-23', 'Confirmada');
+(10, 10, '2024-11-19', '2024-11-23', 'Cancelada');
 
 INSERT INTO pagamento (id_reserva, valor_pago, forma_pagamento, status_pagamento) VALUES
 (1, 300.00, 'Cartao', 'Pago'),
