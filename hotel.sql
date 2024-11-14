@@ -64,7 +64,6 @@ CREATE TABLE atendimento (
   FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
 );
 
--- Inserindo registros na tabela cliente
 INSERT INTO cliente (nome, email, telefone, documento) VALUES
 ('João Silva', 'joao.silva@gmail.com', '(11) 98765-4321', '123.456.789-00'),
 ('Maria Oliveira', 'maria.oliveira@yahoo.com', '(21) 99876-5432', '987.654.321-00'),
@@ -77,7 +76,6 @@ INSERT INTO cliente (nome, email, telefone, documento) VALUES
 ('Ricardo Almeida', 'ricardo.almeida@outlook.com', '(91) 93456-7890', '741.852.963-00'),
 ('Gabriela Martins', 'gabriela.martins@icloud.com', '(11) 98765-4321', '123.987.654-00');
 
--- Inserindo registros na tabela quarto
 INSERT INTO quarto (numero_quarto, tipo_quarto, preco_noite, status_quarto) VALUES
 (101, 'Simples', 150.00, 'Disponivel'),
 (102, 'Duplo', 200.00, 'Ocupado'),
@@ -90,20 +88,18 @@ INSERT INTO quarto (numero_quarto, tipo_quarto, preco_noite, status_quarto) VALU
 (109, 'Luxo', 370.00, 'Reservado'),
 (110, 'Simples', 145.00, 'Disponivel');
 
--- Inserindo registros na tabela reserva
 INSERT INTO reserva (id_cliente, id_quarto, data_entrada, data_saida, status_reserva) VALUES
-(1, 101, '2024-11-10', '2024-11-12', 'Confirmada'),
-(2, 102, '2024-11-11', '2024-11-15', 'Confirmada'),
-(3, 103, '2024-11-12', '2024-11-14', 'Confirmada'),
-(4, 104, '2024-11-13', '2024-11-16', 'Confirmada'),
-(5, 105, '2024-11-14', '2024-11-17', 'Confirmada'),
-(6, 106, '2024-11-15', '2024-11-18', 'Confirmada'),
-(7, 107, '2024-11-16', '2024-11-20', 'Confirmada'),
-(8, 108, '2024-11-17', '2024-11-21', 'Confirmada'),
-(9, 109, '2024-11-18', '2024-11-22', 'Confirmada'),
-(10, 110, '2024-11-19', '2024-11-23', 'Confirmada');
+(1, 1, '2024-11-10', '2024-11-12', 'Confirmada'),
+(2, 2, '2024-11-11', '2024-11-15', 'Confirmada'),
+(3, 3, '2024-11-12', '2024-11-14', 'Confirmada'),
+(4, 4, '2024-11-13', '2024-11-16', 'Confirmada'),
+(5, 5, '2024-11-14', '2024-11-17', 'Confirmada'),
+(6, 6, '2024-11-15', '2024-11-18', 'Confirmada'),
+(7, 7, '2024-11-16', '2024-11-20', 'Confirmada'),
+(8, 8, '2024-11-17', '2024-11-21', 'Confirmada'),
+(9, 9, '2024-11-18', '2024-11-22', 'Confirmada'),
+(10, 10, '2024-11-19', '2024-11-23', 'Confirmada');
 
--- Inserindo registros na tabela pagamento
 INSERT INTO pagamento (id_reserva, valor_pago, forma_pagamento, status_pagamento) VALUES
 (1, 300.00, 'Cartao', 'Pago'),
 (2, 800.00, 'Dinheiro', 'Pago'),
@@ -116,7 +112,6 @@ INSERT INTO pagamento (id_reserva, valor_pago, forma_pagamento, status_pagamento
 (9, 740.00, 'Pix', 'Pago'),
 (10, 435.00, 'Cartao', 'Pendente');
 
--- Inserindo registros na tabela feedback
 INSERT INTO feedback (id_cliente, comentario, avaliacao, data_avaliacao) VALUES
 (1, 'Excelente atendimento!', 5, '2024-11-12'),
 (2, 'Quarto confortável, mas o Wi-Fi não estava bom.', 4, '2024-11-13'),
@@ -129,7 +124,6 @@ INSERT INTO feedback (id_cliente, comentario, avaliacao, data_avaliacao) VALUES
 (9, 'Quarto bonito, mas a cama não era muito confortável.', 3, '2024-11-20'),
 (10, 'Gostei muito do atendimento, mas a comida do restaurante deixou a desejar.', 4, '2024-11-21');
 
--- Inserindo registros na tabela atendimento
 INSERT INTO atendimento (id_cliente, tipo_solicitacao, descricao, data_solicitacao, status_atendimento) VALUES
 (1, 'Problema com ar condicionado', 'O ar condicionado do quarto não estava funcionando.', '2024-11-10 14:30:00', 'Pendente'),
 (2, 'Pedido de informações', 'Solicitei informações sobre os serviços oferecidos pelo hotel.', '2024-11-11 10:15:00', 'Pendente'),
