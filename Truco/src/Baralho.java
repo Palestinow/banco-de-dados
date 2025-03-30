@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.*; 
 
 public class Baralho {
     private List<Carta> cartas;
@@ -22,5 +22,9 @@ public class Baralho {
 
     public Carta distribuirCarta() {
         return cartas.remove(0);
+    }
+
+    public boolean temCartas() {
+        return !cartas.isEmpty();
     }
 }

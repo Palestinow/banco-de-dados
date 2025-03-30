@@ -9,8 +9,8 @@ public class Main {
             System.out.print("Nome do Jogador 2: ");
             String nome2 = scanner.nextLine();
 
-            Partida partida = new Partida(nome1, nome2);
-            partida.iniciar();
+            Jogo jogo = new Jogo(nome1, nome2);
+            jogo.iniciar();
         }
     }
 }
