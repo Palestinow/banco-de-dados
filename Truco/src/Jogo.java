@@ -49,20 +49,24 @@ public class Jogo {
     private void jogarRodada() {
         int vitoriasJogador1 = 0;
         int vitoriasJogador2 = 0;
-    
-        
+
         for (int i = 0; i < 3; i++) {
             System.out.println("\nRodada " + (i + 1));
-    
+
             Carta carta1 = escolherCarta(jogador1);
             Carta carta2 = escolherCarta(jogador2);
-    
-            if (calcularVencedorRodada(carta1, carta2)) {
+
+            int resultadoRodada = calcularVencedorRodada(carta1, carta2);
+
+            if (resultadoRodada == 1) {
                 vitoriasJogador1++;
-            } else if (calcularVencedorRodada(carta2, carta1)) {
+            } else if (resultadoRodada == 2) {
+                vitoriasJogador2++;
+            } else {
+                vitoriasJogador1++;
                 vitoriasJogador2++;
             }
-    
+
             if (vitoriasJogador1 == 2) {
                 System.out.println(jogador1.getNome() + " ganhou a mão!");
                 jogador1.adicionarPontos(1);
@@ -74,7 +78,7 @@ public class Jogo {
                 return;
             }
         }
-    
+
         if (vitoriasJogador1 > vitoriasJogador2) {
             jogador1.adicionarPontos(1);
             System.out.println(jogador1.getNome() + " ganhou a mão!");
@@ -85,7 +89,7 @@ public class Jogo {
             System.out.println("A mão terminou empatada!");
         }
     }
-    
+
 
     private Carta escolherCarta(Jogador jogador) {
         while (true) {
@@ -105,19 +109,18 @@ public class Jogo {
         }
     }
 
-    private boolean calcularVencedorRodada(Carta carta1, Carta carta2) {
+    private int calcularVencedorRodada(Carta carta1, Carta carta2) {
         if (carta1.getValor() > carta2.getValor()) {
             System.out.println(jogador1.getNome() + " venceu a rodada com " + carta1);
-            return true; 
+            return 1;
         } else if (carta1.getValor() < carta2.getValor()) {
             System.out.println(jogador2.getNome() + " venceu a rodada com " + carta2);
-            return false; 
+            return 2;
         } else {
             System.out.println("Empate na rodada! Nenhum jogador recebe pontos.");
-            return true; 
+            return 0;
         }
     }
-    
 
     private void mostrarResultado() {
         System.out.println("\nPontuacao Final:");
