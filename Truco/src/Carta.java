@@ -9,8 +9,24 @@ public class Carta {
         this.naipe = naipe;
     }
 
+    public String getNaipe() {
+        return naipe;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
     public int getValor() {
         return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+
+    public boolean isManilha(String manilha) {
+        return this.nome.equals(manilha);
     }
 
     @Override

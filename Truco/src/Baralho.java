@@ -1,11 +1,11 @@
-import java.util.*; 
+import java.util.*;
 
 public class Baralho {
     private List<Carta> cartas;
 
     public Baralho() {
         cartas = new ArrayList<>();
-        String[] naipes = {"Espadas", "Copas", "Ouros", "Paus"};
+        String[] naipes = {"Paus", "Copas", "Espadas", "Ouros",};
         String[] nomes = {"4", "5", "6", "7", "Q", "J", "K", "A", "2", "3"};
         int[] valores = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
@@ -14,6 +14,10 @@ public class Baralho {
                 cartas.add(new Carta(nomes[i], valores[i], naipe));
             }
         }
+    }
+
+    public List<Carta> getCartas() {
+        return cartas;
     }
 
     public void embaralhar() {
