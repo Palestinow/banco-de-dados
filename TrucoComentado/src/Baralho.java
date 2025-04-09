@@ -38,10 +38,4 @@ public class Baralho {
         // Remove e retorna a carta do topo do baralho (índice 0)
         return cartas.remove(0);
     }
-
-    // Método que verifica se ainda há cartas no baralho
-    public boolean temCartas() {
-        // Retorna true se a lista de cartas não estiver vazia
-        return !cartas.isEmpty();
-    }
 }

@@ -25,6 +25,21 @@ public class Jogo {
         mostrarResultado();
     }
 
+    private void distribuirCartas() {
+        for (int i = 0; i < 3; i++) {
+            jogador1.receberCarta(baralho.distribuirCarta());
+            jogador2.receberCarta(baralho.distribuirCarta());
+        }
+    }
+
+    private void mostrarCartasJogador(Jogador jogador) {
+        System.out.println("\n" + jogador.getNome() + ", suas cartas:");
+        List<Carta> mao = jogador.getMao();
+        for (int i = 0; i < mao.size(); i++) {
+            System.out.println((i + 1) + " - " + mao.get(i));
+        }
+    }
+
     private void novaRodada() {
         System.out.println("\nNova rodada iniciada!");
         baralho = new Baralho();
@@ -45,40 +60,18 @@ public class Jogo {
         jogarRodada();
     }
 
-    private void ajustarValoresCartas(String manilha) {
-        Map<String, Integer> valoresManilha = new HashMap<>();
-        valoresManilha.put("Paus", 14);
-        valoresManilha.put("Copas", 13);
-        valoresManilha.put("Espadas", 12);
-        valoresManilha.put("Ouros", 11);
+    private Carta escolherCarta(Jogador jogador) {
+        while (true) {
+            System.out.println(jogador.getNome() + ", escolha uma carta para jogar (1, 2 ou 3):");
 
-        for (Carta carta : baralho.getCartas()) {
-            if (carta.isManilha(manilha)) {
-                carta.setValor(valoresManilha.get(carta.getNaipe()));
+            int escolha = scanner.nextInt() - 1;
+
+            Carta cartaEscolhida = jogador.jogarCarta(escolha);
+            if (cartaEscolhida != null) {
+                return cartaEscolhida;
             }
+            System.out.println("Escolha invalida! Tente novamente.");
         }
-    }
-
-    private String determinarManilha() {
-        for (int i = 0; i < ordemCartas.length; i++) {
-            if (vira.getNome().equals(ordemCartas[i])) {
-                return ordemCartas[(i + 1) % ordemCartas.length];
-            }
-        }
-        return null;
-    }
-
-    private void distribuirCartas() {
-        for (int i = 0; i < 3; i++) {
-            jogador1.receberCarta(baralho.distribuirCarta());
-            jogador2.receberCarta(baralho.distribuirCarta());
-        }
-    }
-
-    private void mostrarPontuacoes() {
-        System.out.println("\nPontuacao Atual:");
-        System.out.println(jogador1.getNome() + ": " + jogador1.getPontos() + " pontos");
-        System.out.println(jogador2.getNome() + ": " + jogador2.getPontos() + " pontos");
     }
 
     private void jogarRodada() {
@@ -149,25 +142,39 @@ public class Jogo {
         }
     }
 
-    private Carta escolherCarta(Jogador jogador) {
-        while (true) {
-            System.out.println(jogador.getNome() + ", escolha uma carta para jogar (1, 2 ou 3):");
-
-            int escolha = scanner.nextInt() - 1;
-
-            Carta cartaEscolhida = jogador.jogarCarta(escolha);
-            if (cartaEscolhida != null) {
-                return cartaEscolhida;
-            }
-            System.out.println("Escolha invalida! Tente novamente.");
+    private int calcularVencedorRodada(Carta carta1, Carta carta2) {
+        if (carta1.getValor() > carta2.getValor()) {
+            System.out.println(jogador1.getNome() + " venceu a rodada com " + carta1);
+            return 1;
+        } else if (carta1.getValor() < carta2.getValor()) {
+            System.out.println(jogador2.getNome() + " venceu a rodada com " + carta2);
+            return 2;
+        } else {
+            System.out.println("Empate na rodada! Nenhum jogador recebe pontos.");
+            return 0;
         }
     }
 
-    private void mostrarCartasJogador(Jogador jogador) {
-        System.out.println("\n" + jogador.getNome() + ", suas cartas:");
-        List<Carta> mao = jogador.getMao();
-        for (int i = 0; i < mao.size(); i++) {
-            System.out.println((i + 1) + " - " + mao.get(i));
+    private String determinarManilha() {
+        for (int i = 0; i < ordemCartas.length; i++) {
+            if (vira.getNome().equals(ordemCartas[i])) {
+                return ordemCartas[(i + 1) % ordemCartas.length];
+            }
+        }
+        return null;
+    }
+
+    private void ajustarValoresCartas(String manilha) {
+        Map<String, Integer> valoresManilha = new HashMap<>();
+        valoresManilha.put("Paus", 14);
+        valoresManilha.put("Copas", 13);
+        valoresManilha.put("Espadas", 12);
+        valoresManilha.put("Ouros", 11);
+
+        for (Carta carta : baralho.getCartas()) {
+            if (carta.isManilha(manilha)) {
+                carta.setValor(valoresManilha.get(carta.getNaipe()));
+            }
         }
     }
 
@@ -203,6 +210,7 @@ public class Jogo {
             System.out.println("2 - Correr");
             System.out.println("3 - Aumentar aposta");
 
+            mostrarCartasJogador(oponente);
             int escolha = scanner.nextInt();
 
             switch (escolha) {
@@ -246,6 +254,7 @@ public class Jogo {
         System.out.println("2 - Correr");
         System.out.println("3 - Aumentar aposta");
 
+        mostrarCartasJogador(oponente);
         int escolha = scanner.nextInt();
 
         switch (escolha) {
@@ -276,17 +285,10 @@ public class Jogo {
         }
     }
 
-    private int calcularVencedorRodada(Carta carta1, Carta carta2) {
-        if (carta1.getValor() > carta2.getValor()) {
-            System.out.println(jogador1.getNome() + " venceu a rodada com " + carta1);
-            return 1;
-        } else if (carta1.getValor() < carta2.getValor()) {
-            System.out.println(jogador2.getNome() + " venceu a rodada com " + carta2);
-            return 2;
-        } else {
-            System.out.println("Empate na rodada! Nenhum jogador recebe pontos.");
-            return 0;
-        }
+    private void mostrarPontuacoes() {
+        System.out.println("\nPontuacao Atual:");
+        System.out.println(jogador1.getNome() + ": " + jogador1.getPontos() + " pontos");
+        System.out.println(jogador2.getNome() + ": " + jogador2.getPontos() + " pontos");
     }
 
     private void mostrarResultado() {

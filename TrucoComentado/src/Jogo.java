@@ -26,6 +26,16 @@ public class Jogo {
         this.valorMao = 1;
     }
 
+    /**
+    * .---------------------------------.
+    * |      _    ___     ____    ___   |
+    * |     | |  / _ \   / ___|  / _ \  |
+    * |  _  | | | | | | | |  _  | | | | |
+    * | | |_| | | |_| | | |_| | | |_| | |
+    * |  \___/   \___/   \____|  \___/  |
+    * '---------------------------------'
+    */
+
     // Método que inicializa o jogo
     public void iniciar() {
         // Continua jogando enquanto nenhum jogador atingir 12 pontos
@@ -33,6 +43,23 @@ public class Jogo {
             novaRodada();
         }
         mostrarResultado();
+    }
+
+    private void distribuirCartas() {
+        for (int i = 0; i < 3; i++) {
+            jogador1.receberCarta(baralho.distribuirCarta());
+            jogador2.receberCarta(baralho.distribuirCarta());
+        }
+    }
+
+    // Método que exibe as cartas disponíveis na mão do jogador
+    private void mostrarCartasJogador(Jogador jogador) {
+        System.out.println("\n" + jogador.getNome() + ", suas cartas:");
+        List<Carta> mao = jogador.getMao(); // Obtém a mão do jogador
+        // Itera sobre as cartas da mão e exibe cada uma com seu índice
+        for (int i = 0; i < mao.size(); i++) {
+            System.out.println((i + 1) + " - " + mao.get(i)); // Mostra o índice
+        }
     }
 
     // Método que inicia uma nova rodada
@@ -56,46 +83,22 @@ public class Jogo {
         jogarRodada();
     }
 
-    // Método que ajusta os valores das cartas que são manilhas
-    private void ajustarValoresCartas(String manilha) {
-        // Mapeia os valores das manilhas por naipe
-        Map<String, Integer> valoresManilha = new HashMap<>();
-        valoresManilha.put("Paus", 14);
-        valoresManilha.put("Copas", 13);
-        valoresManilha.put("Espadas", 12);
-        valoresManilha.put("Ouros", 11);
+    // Método que permite ao jogador escolher uma carta para jogar
+    private Carta escolherCarta(Jogador jogador) {
+        while (true) { // Loop para garantir que o jogador escolha uma carta válida
+            System.out.println(jogador.getNome() + ", escolha uma carta para jogar (1, 2 ou 3):");
 
-        // Percorre todas as cartas do baralho
-        for (Carta carta : baralho.getCartas()) {
-            // Se a carta for uma a manilha, ajusta seu valor
-            if (carta.isManilha(manilha)) {
-                carta.setValor(valoresManilha.get(carta.getNaipe()));
+            // Lê a escolha do jogador (subtraindo 1 para ajustar ao índice da lista)
+            int escolha = scanner.nextInt() - 1;
+
+            // Tenta jogar a carta escolhida
+            Carta cartaEscolhida = jogador.jogarCarta(escolha);
+            if (cartaEscolhida != null) { // Se a carta for válida, retorna a carta escolhida
+                return cartaEscolhida;
             }
+            // Caso a escolha seja inválida, exibe uma mensagem e repete o loop
+            System.out.println("Escolha invalida! Tente novamente.");
         }
-    }
-
-    // Método que determina a manilha com base na carta "vira"
-    private String determinarManilha() {
-        // Encontra a próxima carta na ordem para definir a manilha
-        for (int i = 0; i < ordemCartas.length; i++) {
-            if (vira.getNome().equals(ordemCartas[i])) {
-                return ordemCartas[(i + 1) % ordemCartas.length];
-            }
-        }
-        return null; // Retorna null se não encontrar (não deve acontecer)
-    }
-
-    private void distribuirCartas() {
-        for (int i = 0; i < 3; i++) {
-            jogador1.receberCarta(baralho.distribuirCarta());
-            jogador2.receberCarta(baralho.distribuirCarta());
-        }
-    }
-
-    private void mostrarPontuacoes() {
-        System.out.println("\nPontuacao Atual:");
-        System.out.println(jogador1.getNome() + ": " + jogador1.getPontos() + " pontos");
-        System.out.println(jogador2.getNome() + ": " + jogador2.getPontos() + " pontos");
     }
 
     // Método que realiza uma rodada do jogo
@@ -171,33 +174,67 @@ public class Jogo {
         }
     }
 
-    // Método que permite ao jogador escolher uma carta para jogar
-    private Carta escolherCarta(Jogador jogador) {
-        while (true) { // Loop para garantir que o jogador escolha uma carta válida
-            System.out.println(jogador.getNome() + ", escolha uma carta para jogar (1, 2 ou 3):");
+    private int calcularVencedorRodada(Carta carta1, Carta carta2) {
+        if (carta1.getValor() > carta2.getValor()) {
+            System.out.println(jogador1.getNome() + " venceu a rodada com " + carta1);
+            return 1;
+        } else if (carta1.getValor() < carta2.getValor()) {
+            System.out.println(jogador2.getNome() + " venceu a rodada com " + carta2);
+            return 2;
+        } else {
+            System.out.println("Empate na rodada! Nenhum jogador recebe pontos.");
+            return 0;
+        }
+    }
 
-            // Lê a escolha do jogador (subtraindo 1 para ajustar ao índice da lista)
-            int escolha = scanner.nextInt() - 1;
+    /**
+    * .------------------------------------------------------------.
+    * |  __  __      _      _   _   ___   _       _   _      _     |
+    * | |  \/  |    / \    | \ | | |_ _| | |     | | | |    / \    |
+    * | | |\/| |   / _ \   |  \| |  | |  | |     | |_| |   / _ \   |
+    * | | |  | |  / ___ \  | |\  |  | |  | |___  |  _  |  / ___ \  |
+    * | |_|  |_| /_/   \_\ |_| \_| |___| |_____| |_| |_| /_/   \_\ |
+    * '------------------------------------------------------------'
+    */
 
-            // Tenta jogar a carta escolhida
-            Carta cartaEscolhida = jogador.jogarCarta(escolha);
-            if (cartaEscolhida != null) { // Se a carta for válida, retorna a carta escolhida
-                return cartaEscolhida;
+    // Método que determina a manilha com base na carta "vira"
+    private String determinarManilha() {
+        // Encontra a próxima carta na ordem para definir a manilha
+        for (int i = 0; i < ordemCartas.length; i++) {
+            if (vira.getNome().equals(ordemCartas[i])) {
+                return ordemCartas[(i + 1) % ordemCartas.length];
             }
-            // Caso a escolha seja inválida, exibe uma mensagem e repete o loop
-            System.out.println("Escolha invalida! Tente novamente.");
+        }
+        return null; // Retorna null se não encontrar (não deve acontecer)
+    }
+
+    // Método que ajusta os valores das cartas que são manilhas
+    private void ajustarValoresCartas(String manilha) {
+        // Mapeia os valores das manilhas por naipe
+        Map<String, Integer> valoresManilha = new HashMap<>();
+        valoresManilha.put("Paus", 14);
+        valoresManilha.put("Copas", 13);
+        valoresManilha.put("Espadas", 12);
+        valoresManilha.put("Ouros", 11);
+
+        // Percorre todas as cartas do baralho
+        for (Carta carta : baralho.getCartas()) {
+            // Se a carta for uma a manilha, ajusta seu valor
+            if (carta.isManilha(manilha)) {
+                carta.setValor(valoresManilha.get(carta.getNaipe()));
+            }
         }
     }
 
-    // Método que exibe as cartas disponíveis na mão do jogador
-    private void mostrarCartasJogador(Jogador jogador) {
-        System.out.println("\n" + jogador.getNome() + ", suas cartas:");
-        List<Carta> mao = jogador.getMao(); // Obtém a mão do jogador
-        // Itera sobre as cartas da mão e exibe cada uma com seu índice
-        for (int i = 0; i < mao.size(); i++) {
-            System.out.println((i + 1) + " - " + mao.get(i)); // Mostra o índice
-        }
-    }
+    /**
+    * .-----------------------------------------.
+    * |  _____   ____    _   _    ____    ___   |
+    * | |_   _| |  _ \  | | | |  / ___|  / _ \  |
+    * |   | |   | |_) | | | | | | |     | | | | |
+    * |   | |   |  _ <  | |_| | | |___  | |_| | |
+    * |   |_|   |_| \_\  \___/   \____|  \___/  |
+    * '-----------------------------------------'
+    */
 
     // Método que verifica se o jogador deseja chamar truco e lida com a resposta do oponente
     private void verificarTruco(Jogador jogador, Jogador oponente) {
@@ -237,6 +274,7 @@ public class Jogo {
             System.out.println("2 - Correr");
             System.out.println("3 - Aumentar aposta");
 
+            mostrarCartasJogador(oponente);
             int escolha = scanner.nextInt(); // Lê a escolha do oponente
 
             // Lida com a escolha do oponente
@@ -285,6 +323,7 @@ public class Jogo {
         System.out.println("2 - Correr");
         System.out.println("3 - Aumentar aposta");
 
+        mostrarCartasJogador(oponente);
         int escolha = scanner.nextInt(); // Lê a escolha do oponente
 
         // Lida com a escolha do oponente
@@ -318,17 +357,20 @@ public class Jogo {
         }
     }
 
-    private int calcularVencedorRodada(Carta carta1, Carta carta2) {
-        if (carta1.getValor() > carta2.getValor()) {
-            System.out.println(jogador1.getNome() + " venceu a rodada com " + carta1);
-            return 1;
-        } else if (carta1.getValor() < carta2.getValor()) {
-            System.out.println(jogador2.getNome() + " venceu a rodada com " + carta2);
-            return 2;
-        } else {
-            System.out.println("Empate na rodada! Nenhum jogador recebe pontos.");
-            return 0;
-        }
+    /**
+    * .---------------------------------------.
+    * |  ____    ____    ___   _   _   _____  |
+    * | |  _ \  |  _ \  |_ _| | \ | | |_   _| |
+    * | | |_) | | |_) |  | |  |  \| |   | |   |
+    * | |  __/  |  _ <   | |  | |\  |   | |   |
+    * | |_|     |_| \_\ |___| |_| \_|   |_|   |
+    * '---------------------------------------'
+    */
+
+    private void mostrarPontuacoes() {
+        System.out.println("\nPontuacao Atual:");
+        System.out.println(jogador1.getNome() + ": " + jogador1.getPontos() + " pontos");
+        System.out.println(jogador2.getNome() + ": " + jogador2.getPontos() + " pontos");
     }
 
     private void mostrarResultado() {

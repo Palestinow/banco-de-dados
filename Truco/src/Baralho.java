@@ -27,8 +27,4 @@ public class Baralho {
     public Carta distribuirCarta() {
         return cartas.remove(0);
     }
-
-    public boolean temCartas() {
-        return !cartas.isEmpty();
-    }
 }
