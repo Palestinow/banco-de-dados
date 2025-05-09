@@ -24,3 +24,18 @@ O Figma será utilizado para criar os protótipos das telas do sistema antes do 
 
 2.1.5 VS Code, Git e GitHub
 O Visual Studio Code será o editor principal de código, por sua leveza e suporte a múltiplas linguagens. O Git será utilizado para controle de versão, garantindo que o trabalho em equipe seja feito de forma organizada e segura. O GitHub será a plataforma usada para armazenar o código-fonte e documentações do projeto.
+
+
+
+2.2 ESPECIFICAÇÃO E MODELAGEM
+A seguir, são apresentados os requisitos funcionais (RF) e não funcionais (RNF) que o sistema deve atender para cumprir seus objetivos.
+
+Tabela de Requisitos
+Nº	Tipo	Nome	Descrição
+RF01	Funcional	Cadastro de Animais	Permitir que a ONG cadastre animais com nome, espécie, idade, raça e fotos.
+RF02	Funcional	Visualização Pública	Permitir que visitantes vejam e filtrem os animais disponíveis para adoção.
+RF03	Funcional	Registro de Interesse	Interessados poderão preencher um formulário com dados e mensagem para a ONG.
+RF04	Funcional	Login Administrativo	Autenticar acesso exclusivo das ONGs para gerenciamento do sistema.
+RF05	Funcional	Relatórios de Adoção	Gerar relatórios com dados dos animais adotados e interessados.
+RNF01	Não Funcional	Interface Responsiva	O sistema deve funcionar corretamente em dispositivos móveis e desktops.
+RNF02	Não Funcional	Armazenamento Seguro	Os dados deverão ser protegidos por autenticação e criptografia básica.
