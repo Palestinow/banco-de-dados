@@ -39,3 +39,14 @@ RF04	Funcional	Login Administrativo	Autenticar acesso exclusivo das ONGs para ge
 RF05	Funcional	Relatórios de Adoção	Gerar relatórios com dados dos animais adotados e interessados.
 RNF01	Não Funcional	Interface Responsiva	O sistema deve funcionar corretamente em dispositivos móveis e desktops.
 RNF02	Não Funcional	Armazenamento Seguro	Os dados deverão ser protegidos por autenticação e criptografia básica.
+
+1.2 OBJETIVOS
+1.2.1 Objetivo Geral
+Desenvolver um sistema web responsivo para auxiliar ONGs no cadastro, gerenciamento e processo de adoção de animais.
+
+1.2.2 Objetivos Específicos
+• Criar um painel administrativo para cadastro e gestão de animais pela ONG;
+• Desenvolver um portal público para visualização e filtragem dos animais disponíveis;
+• Implementar um sistema de contato entre adotantes e ONGs, com notificações e registro de interesse;
+• Gerar relatórios com dados sobre adoções realizadas;
+• Garantir responsividade do sistema para dispositivos móveis.
