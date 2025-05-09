@@ -1,0 +1,26 @@
+2. ESPECIFICAÇÃO TÉCNICA
+O presente projeto tem como objetivo desenvolver um sistema web para auxiliar ONGs locais na gestão da adoção de animais. O sistema será composto por duas áreas principais: um painel administrativo para uso exclusivo das ONGs e um portal público para que pessoas interessadas possam visualizar os animais disponíveis e manifestar interesse em adotá-los.
+
+O projeto será desenvolvido em equipe, com uma duração estimada de dois meses. A equipe utilizará a metodologia ágil Scrum, com sprints semanais, que permitem a entrega de funcionalidades de forma contínua e iterativa. Isso possibilita ajustes rápidos durante o processo, conforme o feedback obtido em cada ciclo de desenvolvimento.
+
+O sistema será desenvolvido com tecnologias web modernas e acessíveis, buscando simplicidade na manutenção, baixo custo de hospedagem e fácil acesso pelos usuários. Inicialmente, será executado em um servidor local, mas ao final do projeto, será feita a migração para um ambiente gratuito ou de baixo custo, como Render, Vercel, Heroku ou GitHub Pages (front-end).
+
+O desenvolvimento será dividido em três camadas: interface do usuário (front-end), lógica de negócios (back-end) e armazenamento de dados (banco de dados). Além disso, serão utilizados recursos de prototipação e modelagem para garantir uma estrutura bem planejada.
+
+2.1 TECNOLOGIAS
+A seguir estão listadas as principais tecnologias que serão utilizadas no projeto:
+
+2.1.1 JavaScript (Front-end)
+A linguagem JavaScript será usada para programar a parte visual do sistema, ou seja, o que o usuário vê e interage. Combinado com HTML e CSS, o JavaScript permitirá criar páginas dinâmicas e responsivas. Será utilizado em conjunto com a biblioteca ReactJS, que facilita a criação de interfaces modulares e reutilizáveis. O React é amplamente usado no mercado e tem documentação completa fornecida pela Meta (Facebook).
+
+2.1.2 Java (Back-end)
+A linguagem Java será usada para desenvolver o servidor da aplicação, responsável por processar as regras de negócio, acessar o banco de dados e responder às requisições dos usuários. Será utilizado em conjunto com o framework Spring Boot, que agiliza a criação de APIs REST, facilitando a comunicação entre o front-end e o banco de dados.
+
+2.1.3 MySQL (Banco de Dados)
+O MySQL será utilizado como sistema de banco de dados relacional. Ele permitirá armazenar de forma organizada os dados dos animais, usuários, adoções e registros de interesse. O MySQL é gratuito, confiável e amplamente utilizado em aplicações web. As tabelas serão criadas com base no modelo lógico do sistema e seguirão boas práticas de normalização.
+
+2.1.4 Figma (Prototipação)
+O Figma será utilizado para criar os protótipos das telas do sistema antes do início da programação. É uma ferramenta online e colaborativa que permite criar wireframes e simular a navegação pelo sistema, ajudando na validação das ideias com usuários e facilitando a comunicação visual dentro da equipe.
+
+2.1.5 VS Code, Git e GitHub
+O Visual Studio Code será o editor principal de código, por sua leveza e suporte a múltiplas linguagens. O Git será utilizado para controle de versão, garantindo que o trabalho em equipe seja feito de forma organizada e segura. O GitHub será a plataforma usada para armazenar o código-fonte e documentações do projeto.
