@@ -49,3 +49,8 @@ RF04	Login administrativo	Autenticação restrita para acesso da ONG
 RF05	Geração de relatórios	Permitir geração de relatórios de adoções realizadas
 RNF01	Interface responsiva	O sistema deverá funcionar bem em celulares e tablets
 RNF02	Armazenamento seguro	Garantir segurança e autenticação nos dados armazenados
+
+# Trello
+Este é o link do Trello criado para gerenciamento do projeto de desenvolvimento do sistema web para adoção de animais. Através deste quadro, a equipe e o orientador poderão acompanhar o andamento das tarefas, as funcionalidades em desenvolvimento, os testes realizados e o que já foi concluído ao longo das sprints:
+
+https://trello.com/b/E5HhxM0O/sistema-web-para-gestao-de-adocao-de-animais-de-ongs-locais
