@@ -54,3 +54,8 @@ RNF02	Armazenamento seguro	Garantir segurança e autenticação nos dados armaze
 Este é o link do Trello criado para gerenciamento do projeto de desenvolvimento do sistema web para adoção de animais. Através deste quadro, a equipe e o orientador poderão acompanhar o andamento das tarefas, as funcionalidades em desenvolvimento, os testes realizados e o que já foi concluído ao longo das sprints:
 
 https://trello.com/b/E5HhxM0O/sistema-web-para-gestao-de-adocao-de-animais-de-ongs-locais
+
+# Figma
+O Figma será utilizado para criar os protótipos das telas do sistema antes do início da programação. É uma ferramenta online e colaborativa que permite criar wireframes e simular a navegação pelo sistema, ajudando na validação das ideias com usuários e facilitando a comunicação visual dentro da equipe:
+
+https://www.figma.com/design/PQET6VBNiYPZNBpOJUhll6/Site-Projeto---Design-de-Software?node-id=2-450&t=aLmXxFOUikFXvzKO-1
