@@ -1,0 +1,52 @@
+NOMES: JHONATAN MENDES DOS SANTOS | THIAGO COSTA PALESTINO
+
+=======================================================================================
+2.4: Por que o Main não deve chamar o DAO diretamente?
+Porque viola a regra de separação de camadas. A Apresentação (Main) deve conversar apenas com a camada imediatamente abaixo (Aplicação/Serviço ou Infraestrutura), mantendo-se isolada dos detalhes de persistência de dados.
+=======================================================================================
+
+=======================================================================================
+3.4: Em qual camada você colocou a regra? Por quê?
+Na camada de Negócio (classe Cliente), pois validações de integridade e regras sobre os dados pertencem ao domínio do sistema, e não à tela ou ao banco de dados.
+=======================================================================================
+
+=======================================================================================
+4.4: Em qual camada fica a classe Historico? Por quê?
+Na camada de Infraestrutura, pois o log é um serviço técnico transversal que atende a todo o sistema, sem pertencer estritamente a uma regra de negócio ou tela.
+=======================================================================================
+
+=======================================================================================
+5: Em qual camada?
+
+Classificação de cada responsabilidade:
+1. Exibir o menu no console: Apresentação
+2. Dar 5% de desconto para mais de 10 compras: Negócio
+3. Executar o comando SQL INSERT INTO: Persistência (ou Dados)
+4. Verificar se o usuário é administrador: Infraestrutura (Segurança)
+5. Coordenar validar, salvar e enviar e-mail: Aplicação
+6. Gravar "erro ao salvar" em log: Infraestrutura
+7. Mostrar "Cliente cadastrado com sucesso!": Apresentação
+8. Não abrir conta para menores de 18 anos: Negócio
+9. Buscar no banco o cliente de ID 7: Persistência
+10. Oferecer o endpoint REST GET /clientes: Apresentação
+=======================================================================================
+
+=======================================================================================
+6: Caça às violações
+
+6a Violações encontradas no código do Main "tudo junto":
+Linhas 7-10: Regra de validação de nome vazio na tela.
+Linhas 11: Acesso direto à lista de dados (clientes.add) na interface.
+Linhas 12-14: Regra de cálculo de desconto e exibição acopladas na interface.
+
+6b Realocação para as camadas corretas:
+Validação de nome -> Camada de Negócio (Cliente).
+Manipulação de dados (clientes.add) -> Camada de Persistência (ClienteDAO).
+Cálculo do desconto -> Camada de Negócio / Aplicação.
+
+6c Classes e métodos corrigidos:
+Main: Apenas lê entradas e exibe saídas.
+ClienteService: Coordena o fluxo de cálculo e cadastro.
+Cliente: Valida as regras do domínio.
+ClienteDAO: Executa o salvamento na lista/banco.
+=======================================================================================
